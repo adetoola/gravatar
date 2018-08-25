@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as md5 from 'md5';
 import * as querystring from 'querystring';
 import IOptions from './interfaces/IOptions';
-import * as request from 'request';
 
 export default class Gravatar {
   private MD5_REGEX = /^[0-9a-f]{32}$/;
@@ -35,23 +34,22 @@ export default class Gravatar {
     return this.profile(email, options, secured);
   }
 
-  async isGravatar(email: string, cb: any): Promise<boolean> {
+  async isGravatar(email: string): Promise<boolean> {
     // Craft a potential url and test its headers
     const hash = this.getHash(email);
     const uri = `${this.GRAVATAR_URL}${hash}?d=404`;
-    let result;
-    await axios
-      .get(uri, {
+
+    return new Promise<boolean>(async resolve => {
+      const result = await axios.get(uri, {
         validateStatus: status => {
           // tslint:disable-line
           return status < 500; // Reject only if the status code is greater than or equal to 500
         },
-      })
-      .then(response => {
-        result = response.status === 200 ? true : false;
       });
 
-    return result;
+      const status: boolean = result.status === 200 ? true : false;
+      resolve(status);
+    });
   }
 
   private params(options: IOptions): object {

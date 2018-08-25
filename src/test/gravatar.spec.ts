@@ -140,8 +140,8 @@ describe('gravatar', () => {
     }).toEqual(expect.objectContaining(queryString));
   });
 
-  it('should check if a gravatar exist', () => {
-    expect(gravatar.isGravatar(VALID_EMAIL)).toBeTruthy();
-    expect(gravatar.isGravatar(INVALID_EMAIL)).toBeFalsy();
+  it('should check if a gravatar exist', async () => {
+    expect(await gravatar.isGravatar(VALID_EMAIL)).toBeTruthy();
+    expect(await gravatar.isGravatar(INVALID_EMAIL)).toBeFalsy();
   });
 });
