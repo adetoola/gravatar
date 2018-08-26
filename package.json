@@ -1,7 +1,14 @@
 {
     "name": "gravatar2",
-    "version": "0.1.0",
-    "description": "A laravel-like mail service",
+    "version": "0.1.1",
+    "description": "A quick and easy to use gravatar on node.js",
+    "keywords": [
+        "gravatar",
+        "gravatar2",
+        "globally",
+        "recognized",
+        "avatar"
+    ],
     "author": {
         "name": "Adetola Onasanya",
         "email": "adetola.onasanya@gmail.com"
@@ -30,18 +37,16 @@
         "*.ts": [
             "npm run lint",
             "npm run format",
+            "npm run test",
             "git add"
         ]
     },
     "dependencies": {
         "axios": "^0.18.0",
-        "blueimp-md5": "^2.10.0",
         "md5": "^2.2.1",
-        "querystring": "^0.2.0",
-        "request": "^2.88.0"
+        "querystring": "^0.2.0"
     },
     "devDependencies": {
-        "@types/blueimp-md5": "^2.7.0",
         "@types/jest": "^23.3.1",
         "@types/node": "^10.7.1",
         "husky": "^0.14.3",
